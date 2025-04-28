@@ -21,7 +21,8 @@
     "lint:fix": "eslint src --fix",
     "lint:langgraph-json": "node scripts/checkLanggraphPaths.js",
     "lint:all": "yarn lint & yarn lint:langgraph-json",
-    "langgraph:dev": "npx @langchain/langgraph-cli dev"
+    "langgraph:dev": "npx @langchain/langgraph-cli dev",
+    "langgraph:build": "npx @langchain/langgraph-cli build"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
