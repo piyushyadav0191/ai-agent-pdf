@@ -267,38 +267,32 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-4 md:p-24 max-w-5xl mx-auto w-full">
-      {messages.length === 0 ? (
-        <>
+    <main className="flex min-h-screen flex-col items-center p-4 md:p-8 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
+      <div className="w-full max-w-4xl mx-auto flex-1 flex flex-col">
+        {messages.length === 0 ? (
           <div className="flex-1 flex items-center justify-center">
-            <div className="text-center">
-              <p className="font-medium text-muted-foreground max-w-md mx-auto">
-                This ai chatbot is an example template to accompany the book:{' '}
-                <a
-                  href="https://www.oreilly.com/library/view/learning-langchain/9781098167271/"
-                  className="underline hover:text-foreground"
-                >
-                  Learning LangChain (O'Reilly): Building AI and LLM
-                  applications with LangChain and LangGraph
-                </a>
+            <div className="space-y-6 text-center">
+              <h1 className="text-3xl font-bold">Welcome to Chatbot</h1>
+              <p className="text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
+                Ask me anything or start a conversation. I'm here to help.
               </p>
+              <ExamplePrompts onPromptSelect={setInput} />
             </div>
           </div>
-          <ExamplePrompts onPromptSelect={setInput} />
-        </>
-      ) : (
-        <div className="w-full space-y-4 mb-20">
-          {messages.map((message, i) => (
-            <ChatMessage key={i} message={message} />
-          ))}
-          <div ref={messagesEndRef} />
-        </div>
-      )}
+        ) : (
+          <div className="w-full space-y-6 mb-24 pt-4">
+            {messages.map((message, i) => (
+              <ChatMessage key={i} message={message} />
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+        )}
+      </div>
 
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background">
-        <div className="max-w-5xl mx-auto space-y-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-zinc-950 border-t dark:border-zinc-800 py-4">
+        <div className="max-w-4xl mx-auto px-4">
           {files.length > 0 && (
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-3">
               {files.map((file, index) => (
                 <FilePreview
                   key={`${file.name}-${index}`}
@@ -308,9 +302,8 @@ export default function Home() {
               ))}
             </div>
           )}
-
           <form onSubmit={handleSubmit} className="relative">
-            <div className="flex gap-2 border rounded-md overflow-hidden bg-gray-50">
+            <div className="flex items-center gap-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
               <input
                 type="file"
                 ref={fileInputRef}
@@ -323,16 +316,14 @@ export default function Home() {
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="rounded-none h-12"
+                className="h-12 w-12 rounded-none text-zinc-500"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isUploading}
               >
                 {isUploading ? (
-                  <div className="flex items-center gap-2">
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  </div>
+                  <Loader2 className="h-5 w-5 animate-spin" />
                 ) : (
-                  <Paperclip className="h-4 w-4" />
+                  <Paperclip className="h-5 w-5" />
                 )}
               </Button>
               <Input
@@ -341,21 +332,21 @@ export default function Home() {
                 placeholder={
                   isUploading ? 'Uploading PDF...' : 'Send a message...'
                 }
-                className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0 h-12 bg-transparent"
+                className="flex-1 h-12 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-900 dark:text-zinc-100"
                 disabled={isUploading || isLoading || !threadId}
               />
               <Button
                 type="submit"
                 size="icon"
-                className="rounded-none h-12"
+                className="h-12 w-12 rounded-none bg-zinc-900 dark:bg-zinc-100 hover:bg-zinc-800 dark:hover:bg-zinc-200 text-white dark:text-zinc-900"
                 disabled={
                   !input.trim() || isUploading || isLoading || !threadId
                 }
               >
                 {isLoading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <Loader2 className="h-5 w-5 animate-spin" />
                 ) : (
-                  <ArrowUp className="h-4 w-4" />
+                  <ArrowUp className="h-5 w-5" />
                 )}
               </Button>
             </div>
