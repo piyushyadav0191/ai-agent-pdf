@@ -4,6 +4,11 @@ This repository contains the complete architecture for an AI-powered chatbot cap
 
 ### Demonstration
 
+![Screenshot_29-Apr_17-40-48_3091](https://github.com/user-attachments/assets/71feee3f-8796-4d32-b282-4131cb05a76c)
+
+![Screenshot_29-Apr_17-40-30_8883](https://github.com/user-attachments/assets/44b54d91-b937-43a2-a17e-fecfd4cfd858)
+
+
 ### Technologies Utilized
 
 - Monorepo (TypeScript Bundled)
