@@ -17,6 +17,7 @@ This repository contains the complete architecture for an AI-powered chatbot cap
 - LangGraph
 - Gemini
 - Supabase
+- Docker
 
 ## Setup Instructions
 
